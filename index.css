@@ -375,6 +375,11 @@
       display: flex;
       flex-direction: column;
     }
+
+    .counter-card img{
+        position: absolute;
+        left: 85%;
+    }
   
     .custom-progress{
       width: 70vw;
@@ -409,4 +414,6 @@
     .heading h1{
       width: 35rem;
     }
+    
   }
+
