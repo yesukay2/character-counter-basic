@@ -240,6 +240,21 @@
     text-align: end;
   } 
   
+
+.progress {
+  background-color: #f0f0f0;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 5px 0;
+}
+
+.progress-bar {
+  height: 12px;
+  background-color: var(--blue-500);
+  transition: width 0.3s ease-in-out;
+}
+
   
   .custom-progress{
     flex-grow: 0.98;
@@ -378,11 +393,11 @@
 
     .counter-card img{
         position: absolute;
-        left: 85%;
+        left: 80%;
     }
   
     .custom-progress{
-      width: 70vw;
+      width: 65vw;
       flex-grow: 1;
     }
 
