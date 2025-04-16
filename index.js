@@ -12,14 +12,25 @@ window.onload = () => {
     const injectLimit = document.getElementById("inject-limit");
     const injectReadTime = document.getElementById("inject-read-time");
     const errorMessage = document.getElementById("error-message");
-
+    const themeSelector = document.getElementById("themeSelector");
+    const logo = document.getElementById("logo");
 
     let expanded = false;
     let excludeSpaces = false;
     let limitCharacters = false;
-    let wordsPerMinute = 60;
-
     injectReadTime.innerHTML = "O minute"
+    let wordsPerMinute = 60;
+    let darkMode = false;
+
+    themeSelector.addEventListener("click", () => {
+      // work on dark mode
+      darkMode = !darkMode;
+      document.body.classList.toggle("dark-Mode");
+
+      logo.src = darkMode ? "./assets/images/logo-dark-theme.svg" : "./assets/images/logo-light-theme.svg";
+      themeSelector.src = darkMode ? "./assets/images/icon-sun.svg" : "./assets/images/icon-moon.svg";
+    })
+
 
 
     const calculateReadingTime = (text) => {
@@ -94,7 +105,7 @@ window.onload = () => {
   
       displayKeys.forEach(char => {
         if (char === " ") return;
-        
+
         const count = chars[char];
         const percent = ((count / totalChars) * 100).toFixed(2);
   
