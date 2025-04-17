@@ -191,6 +191,7 @@
   textarea:focus{
     outline: none;
     border: 1px solid var(--blue-500);
+    box-shadow: 0 0 8px #C27CF8;
   }
 
   #error-message{
