@@ -6,7 +6,7 @@ window.onload = () => {
     const letterDensityContainer = document.getElementById("letter-density");
     const toggleExpandBtn = document.getElementById("toggle-expand");
     const toggleSpaceCheck = document.getElementsByName("toggle-space");
-    const toggleCharLimit = document.getElementsByName("toggle-char-limit");
+    const toggleCharLimit = document.getElementById("toggle-char-limit");
     const charLimitInput = document.getElementById("char-limit-input");
     const nullCharMessage = document.getElementById("null-char-message");
     const injectLimit = document.getElementById("inject-limit");
@@ -17,7 +17,7 @@ window.onload = () => {
 
     let expanded = false;
     let excludeSpaces = false;
-    let limitCharacters = false;
+    // let limitCharacters = false;
     injectReadTime.innerHTML = "O minute"
     let wordsPerMinute = 60;
     let darkMode = false;
@@ -43,32 +43,71 @@ window.onload = () => {
       return `${time} minutes`;
     };
     
-    
-    charLimitInput.addEventListener("input", () => {
-        let charLimitValue = charLimitInput.value;
 
-        if (!isNaN(charLimitValue)) {
-          textInput.setAttribute("maxlength", charLimitValue);
-        }
+
+    textInput.addEventListener("input", () => {
+      const text = textInput.value;
+      const totalChars = updateCounts(text);
+      const charObj = calculateLetterDensity(text);
+      renderLetterDensity(charObj, totalChars);
+
+
+      nullCharMessage.style.display = text.length ? "none" : "block";
+      toggleExpandBtn.style.display = text.length > 5 ? "block" : "none";
+
+      if (toggleCharLimit.checked && charLimitInput.value) {
+        const limit = parseInt(charLimitInput.value, 10);
+        const limitReached = text.length >= limit;
+        
+        textInput.style.border = limitReached ? '1px solid #DA3701' : '1px solid #C27CF8';
+        textInput.style.boxShadow = limitReached ? '0 0 10px #DA3701' : '0 0 1px #C27CF8';
+        
+        injectLimit.innerHTML = limit;
+        errorMessage.style.display = limitReached ? "inline-flex" : "none";
+      } else {
+        textInput.style.border = '1px solid #C27CF8';
+        textInput.style.boxShadow = '0 0 1px #C27CF8';
+        errorMessage.style.display = "none";
+      }
+      
+
+      // calculateReadingTime(text);
+      injectReadTime.innerHTML = text.length < 1  ? "0 minute" : calculateReadingTime(text);
+
     });
 
-    toggleCharLimit.forEach(checkbox => {
-        checkbox.addEventListener("change", (e) => {
-            limitCharacters = e.target.checked;
-            charLimitInput.style.display = limitCharacters ? "inline-block" : "none"
+    toggleCharLimit.addEventListener("change", (e) => {
+      const limitCharacters = e.target.checked;
+      charLimitInput.style.display = limitCharacters ? "inline-block" : "none";
+    
+      if (limitCharacters && charLimitInput.value) {
+        textInput.setAttribute("maxlength", charLimitInput.value); 
+      } else {
+        textInput.removeAttribute("maxlength");
+        textInput.style.border = '1px solid #C27CF8';
+        textInput.style.boxShadow = 'none';
+        errorMessage.style.display = "none";
+      }
+    });
+    
+    // Listen for real-time changes in the number input
+    charLimitInput.addEventListener("input", () => {
+      const limitValue = charLimitInput.value;
+      if (limitValue) {
+        textInput.setAttribute("maxlength", limitValue);
+      } else {
+        textInput.removeAttribute("maxlength");
+      }
+    });
 
-            if (limitCharacters) {
-                textInput.setAttribute("maxlength", charLimitValue); 
-            } else {
-                textInput.removeAttribute("maxlength");
-            }
 
-            // if(textInput.value.length == 1000){
-            //     textInput.style.border
-            // }
-        })
-        
-    })
+  //   charLimitInput.addEventListener("input", () => {
+  //     let charLimitValue = charLimitInput.value;
+
+  //     if (!isNaN(charLimitValue)) {
+  //       textInput.setAttribute("maxlength", charLimitValue);
+  //     }
+  // });
 
   
     const updateCounts = (text) => {
@@ -147,32 +186,7 @@ window.onload = () => {
       toggleExpandBtn.innerHTML = expanded ? 'See less <span><img src="./assets/images/chevron-up.svg" alt=""></span>' : 'See more <span><img src="./assets/images/chevron-down.svg" alt=""></span>';
     });
   
-    textInput.addEventListener("input", () => {
-      const text = textInput.value;
-      const totalChars = updateCounts(text);
-      const charObj = calculateLetterDensity(text);
-      renderLetterDensity(charObj, totalChars);
-
-
-      nullCharMessage.style.display = text.length ? "none" : "block";
-      toggleExpandBtn.style.display = text.length > 5 ? "block" : "none";
-
-      if (charLimitInput.value) {
-        const limitReached = text.length >= charLimitInput.value;
-        textInput.style.border = limitReached ? '1px solid #DA3701' : '1px solid #C27CF8';
-        textInput.style.boxShadow = limitReached ? '0 0 10px #DA3701' : '0 0 1px #C27CF8';
-        injectLimit.innerHTML = charLimitInput.value;
-        errorMessage.style.display = limitReached ? "inline-flex" : "none";
-      } else {
-        // Reset to default styles if no limit is set
-        textInput.style.border = '1px solid #C27CF8';
-        textInput.style.boxShadow = 'none';
-      }
-
-      // calculateReadingTime(text);
-      injectReadTime.innerHTML = text.length < 1  ? "0 minute" : calculateReadingTime(text);
-
-    });
+   
 
     // toggleSpaceCheck.addEventListener("change", () => {
     //     excludeSpaces = e.target.checked;
