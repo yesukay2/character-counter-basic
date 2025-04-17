@@ -468,6 +468,13 @@
       align-items: start;
       gap: 5px;
     }
+
+
+    #char-toggle-set{
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
   
     .counter-card{
         width: 100%;
@@ -517,5 +524,11 @@
       width: 35rem;
     }
     
+
+    #char-toggle-set{
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
   }
 

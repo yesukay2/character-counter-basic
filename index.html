@@ -39,13 +39,16 @@
           <input type="checkbox" name="toggle-space" id="toggle-space" />
           <label for="toggle-space">Exclude Spaces</label>
         </div>
-        <div class="toggle-wrapper">
-          <input type="checkbox" name="toggle-char-limit" id="toggle-char-limit" value="checked"/>
-          <label for="toggle-char-limit">Set Character Limit</label>
+        <div id="char-toggle-set">
+          <div class="toggle-wrapper">
+            <input type="checkbox" name="toggle-char-limit" id="toggle-char-limit" value="checked"/>
+            <label for="toggle-char-limit">Set Character Limit</label>
+          </div>
+          <div class="toggle-wrapper">
+            <input type="number" name="char-limit" id="char-limit-input" style="display: none;"/>
+          </div>
         </div>
-        <div class="toggle-wrapper">
-          <input type="number" name="char-limit" id="char-limit-input" style="display: none;"/>
-        </div>
+          
       </div>
       <p class="read-time">Approx. reading time: <span id="inject-read-time"></span></p>
     </div>
