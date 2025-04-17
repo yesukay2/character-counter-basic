@@ -10,12 +10,11 @@
 <body>
   <div class="screen">
     <header class="title-bar">
-      <img src="./assets/images/logo-light-theme.svg" alt="logo" />
+      <img src="./assets/images/logo-light-theme.svg" alt="logo"  id="logo"/>
       <img
         src="./assets/images/icon-moon.svg"
         alt="theme selector"
         id="themeSelector"
-        style="background-color: #E4E4EF"
       />
     </header>
     <div class="heading">
@@ -28,6 +27,12 @@
         id="textInput"
       ></textarea>
     </div>
+    <div id="error-message" style="display: none;">
+      <img src="./assets/images/icon-info.svg" alt="">
+      <p>
+        Limit reached! Your text exceeds <span id="inject-limit"></span> characters.
+      </p>
+    </div>
     <div class="toggle-set">
       <div class="toggle-container">
         <div class="toggle-wrapper">
@@ -35,11 +40,14 @@
           <label for="toggle-space">Exclude Spaces</label>
         </div>
         <div class="toggle-wrapper">
-          <input type="checkbox" name="toggle-char-limit" id="toggle-char-limit" />
+          <input type="checkbox" name="toggle-char-limit" id="toggle-char-limit" value="checked"/>
           <label for="toggle-char-limit">Set Character Limit</label>
         </div>
+        <div class="toggle-wrapper">
+          <input type="number" name="char-limit" id="char-limit-input" style="display: none;"/>
+        </div>
       </div>
-      <p class="read-time">Approx. reading time: 0 minutes</p>
+      <p class="read-time">Approx. reading time: <span id="inject-read-time"></span></p>
     </div>
     <div class="counter-cards" id="counterCards">
       <div class="counter-card" id="total-char-card">
@@ -66,7 +74,7 @@
     </div>
     <div id="letter-density">
       <h3 id="letter-density-title">Letter Density</h3>
-      <div class="letter-density">
+      <!-- <div class="letter-density">
         <p class="letter">A</p>
         <div class="progress custom-progress" style="height: 12px; border-radius: 10px;">
           <div class="progress-bar" style="width: 25%;"></div>
@@ -104,9 +112,9 @@
           <div class="progress-bar" style="width: 30%;"></div>
         </div>
         <p class="percentage">6 (30.00%)</p>
-      </div>
-
-      <button type="button" id="toggle-expand">See more <span><img src="./assets/images/chevron-down.svg" alt=""></span></button>
+      </div> -->
+      <p id="null-char-message">No characters found. Start typing to see letter density.</p>
+      <button type="button" id="toggle-expand" style="display: none;">See more <span><img src="./assets/images/chevron-down.svg" alt="See more button"></span></button>
     </div>
   </div>
 </body>
