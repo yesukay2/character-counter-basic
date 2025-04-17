@@ -131,6 +131,10 @@
     padding: 10px;
     border-radius: 10px;
   }
+
+  #themeSelector:hover{
+    cursor: pointer;
+  }
   
   h3{
     font: var(--text-preset-2);

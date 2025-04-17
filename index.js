@@ -100,15 +100,6 @@ window.onload = () => {
       }
     });
 
-
-  //   charLimitInput.addEventListener("input", () => {
-  //     let charLimitValue = charLimitInput.value;
-
-  //     if (!isNaN(charLimitValue)) {
-  //       textInput.setAttribute("maxlength", charLimitValue);
-  //     }
-  // });
-
   
     const updateCounts = (text) => {
       const characterCount = excludeSpaces ? text.replace(/\s/g, "").length : text.length;
@@ -135,7 +126,10 @@ window.onload = () => {
     };
   
     const renderLetterDensity = (chars, totalChars) => {
-      const keys = Object.keys(chars);
+      console.log(chars)
+      sortedChars = Object.fromEntries(Object.entries(chars).sort(([,a] , [,b]) => b - a)
+      )
+      const keys = Object.keys(sortedChars);
       let displayKeys = expanded ? keys : keys.slice(0, 5);
   
       // Clear old entries except the title and toggle button
