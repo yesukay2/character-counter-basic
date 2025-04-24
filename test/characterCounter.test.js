@@ -1,91 +1,3 @@
-// import {
-//     countCharacters,
-//     countWords,
-//     countSentences,
-//     calculateLetterDensity,
-//     calculateReadingTime
-//   } from "./characterCounter.js";
-  
-//   describe("Character Counter Utilities", () => {
-//     test("countCharacters - includes spaces", () => {
-//       expect(countCharacters("Hello world")).toBe(11);
-//     });
-  
-//     test("countCharacters - excludes spaces", () => {
-//       expect(countCharacters("Hello world", true)).toBe(10);
-//     });
-  
-//     test("countCharacters - empty string", () => {
-//       expect(countCharacters("")).toBe(0);
-//     });
-  
-//     test("countWords - basic input", () => {
-//       expect(countWords("This is a test")).toBe(4);
-//     });
-  
-//     test("countWords - excessive spaces", () => {
-//       expect(countWords("  This   is   spaced out  ")).toBe(4);
-//     });
-  
-//     test("countWords - empty string", () => {
-//       expect(countWords("")).toBe(0);
-//     });
-  
-//     test("countSentences - basic punctuation", () => {
-//       expect(countSentences("This is one. This is two? This is three!")).toBe(3);
-//     });
-  
-//     test("countSentences - no punctuation", () => {
-//       expect(countSentences("No punctuation here")).toBe(1);
-//     });
-  
-//     test("calculateLetterDensity - basic input", () => {
-//       const result = calculateLetterDensity("AAaaBBb", false);
-//       expect(result).toEqual({ a: 4, b: 3 });
-//     });
-  
-//     test("calculateLetterDensity - exclude spaces and symbols", () => {
-//       const result = calculateLetterDensity("A! B! B", true);
-//       expect(result).toEqual({ a: 1, b: 2 });
-//     });
-  
-//     test("calculateReadingTime - < 1 minute", () => {
-//       expect(calculateReadingTime("Short input")).toBe("< 1 minute");
-//     });
-  
-//     test("calculateReadingTime - exact minutes", () => {
-//       const longText = "word ".repeat(120).trim();
-//       expect(calculateReadingTime(longText)).toBe("2 minutes");
-//     });
-//   });
-  
-
-//   /**
-//  * @jest-environment jsdom
-//  */
-
-// test("DOM updates total character count on input", () => {
-//     document.body.innerHTML = `
-//       <input id="textInput" />
-//       <div id="total-char-card"><div class="card-content"><p></p></div></div>
-//     `;
-  
-//     const textInput = document.getElementById("textInput");
-//     const totalCharEl = document.querySelector("#total-char-card .card-content p");
-  
-//     textInput.value = "Hello world";
-    
-//     // Simulate updateCounts
-//     const characterCount = textInput.value.length;
-//     totalCharEl.textContent = characterCount > 9 ? characterCount : `0${characterCount}`;
-    
-//     expect(totalCharEl.textContent).toBe("11");
-//   });
-
-
-
-
-
 import {
     countCharacters,
     countWords,
@@ -141,7 +53,7 @@ import {
       expect(countSentences("No punctuation here")).toBe(1);
     });
   
-    // Test for counting sentences with unusual punctuation (ellipsis)
+    // Test for counting sentences with unusual punctuation (ellipsis...)
     test("countSentences - with ellipses", () => {
       expect(countSentences("This is... one")).toBe(1);
     });
@@ -171,9 +83,6 @@ import {
   });
   
   // DOM-related test to simulate user interaction with the input field
-  /**
-   * @jest-environment jsdom
-   */
   test("DOM updates total character count on input", () => {
     document.body.innerHTML = `
       <div class="screen">
@@ -222,7 +131,7 @@ import {
     const warningMessage = document.getElementById("warningMessage");
   
     // Simulate user typing in the textarea
-    textInput.value = "A".repeat(101); // Exceeding the character limit
+    textInput.value = "A".repeat(101);
     
     // Check if warning message is shown
     if (textInput.value.length > 100) {
@@ -245,7 +154,7 @@ import {
     const readingTimeEl = document.getElementById("reading-time");
   
     // Simulate user typing in the textarea
-    textInput.value = "word ".repeat(120).trim(); // Approximately 2 minutes of reading time
+    textInput.value = "word ".repeat(120).trim(); 
     
     // Simulate reading time update
     const readingTime = calculateReadingTime(textInput.value);
