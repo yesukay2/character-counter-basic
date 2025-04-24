@@ -112,9 +112,9 @@ window.onload = () => {
 
   // logic for updating counter values
     const updateCounts = (text) => {
-      const characterCount = excludeSpaces ? text.replace(/\s/g, "").length : text.length;
-      const wordCount = text.trim().length > 0 ? text.trim().split(/\s+/).length : 0;
-      const sentenceCount = text.trim().length > 0 ? text.trim().split(/[.?!]+/).filter(Boolean).length : 0;
+      const characterCount = excludeSpaces ? text.replace(/\s/g, "").replace(/\.{3,}/g, '.').length : text.length;
+      const wordCount = text.trim().length > 0 ? text.trim().replace(/\.{3,}/g, '').split(/\s+/).length : 0;
+      const sentenceCount = text.trim().replace(/\.{3,}/g, '').length > 0 ? text.trim().replace(/\.{3,}/g, '.').split(/[.?!]+/).filter(Boolean).length : 0;
   
       // set 0 as preceding number for single digit counts values
       totalCharEl.textContent = characterCount > 9 ? characterCount : `0${characterCount}`;

@@ -1,0 +1,32 @@
+{
+  "name": "character-counter2",
+  "version": "1.0.0",
+  "description": "This is a character counter web app built with html, css, and javascript.",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yesukay2/character-counter-basic.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yesukay2/character-counter-basic/issues"
+  },
+  "homepage": "https://github.com/yesukay2/character-counter-basic#readme",
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jsdom": "^26.1.0"
+  }
+}
