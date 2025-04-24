@@ -8,7 +8,7 @@ export const countCharacters = (text, excludeSpaces = false) => {
   };
   
   export const countSentences = (text) => {
-    return text.trim().replace(/\.{3,}/g, '.').length > 0 ? text.trim().replace(/\.{3,}/g, '').split(/[.?!]+/).filter(Boolean).length : 0;
+    return text.trim().length > 0 ? text.trim().replace(/\.{3,}/g, '').split(/[.?!]+/).filter(Boolean).length : 0;
   };
   
   export const calculateLetterDensity = (text, excludeSpaces = false) => {
